@@ -1,0 +1,96 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background: #e0e0e0;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+input, button {
+  padding: 10px;
+  margin: 5px 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 12px; /* Rounded corners */
+  /* padding: 8px 12px;   */
+/* } */ 
+
+button:hover {
+  background-color: #0056b3;
+}
+/* General button style */
+button {
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 12px; /* Rounded corners */
+  transition: 0.3s; /* Smooth hover effect */
+}
+
+/* Add button style */
+#userForm button {
+  background-color: #007bff;
+  color: white;
+  margin-top: 5px;
+}
+
+#userForm button:hover {
+  background-color: #0056b3;
+}
+
+/* Edit button style */
+li button:nth-of-type(1) {
+  background-color: #ffc107; /* Yellow color */
+  color: #fff;
+}
+
+li button:nth-of-type(1):hover {
+  background-color: #e0a800;
+}
+
+/* Delete button style */
+li button:nth-of-type(2) {
+  background-color: #dc3545; /* Red color */
+  color: #fff;
+}
+
+li button:nth-of-type(2):hover {
+  background-color: #c82333;
+}
+
+/* Optional: space between buttons */
+li button {
+  margin-left: 5px;
+}
+
