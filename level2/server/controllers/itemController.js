@@ -5,6 +5,7 @@ import Item from '../models/Item.js';
 export const listItems = async (req, res) => {
      try {
        const items = await Item.find({ owner: req.user.id }).sort({ createdAt: -1 });
+       console.log("Found items:", items);
        return res.json({ success: true, items });
      } catch (error) {
        console.error(error);

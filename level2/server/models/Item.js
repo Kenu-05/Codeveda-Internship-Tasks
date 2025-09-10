@@ -24,6 +24,11 @@ const itemSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true, // must exist
+    },
   },
   {
     timestamps: true,
