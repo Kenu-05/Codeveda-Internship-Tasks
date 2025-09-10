@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import { User } from '../models/User.js';
-import { env } from '../config/env.js';
+import User from '../models/User.js';
+import { env } from '../configs/env.js';
 import { signJwt } from '../utils/generateToken.js';
 
 

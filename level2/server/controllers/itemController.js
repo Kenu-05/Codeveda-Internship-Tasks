@@ -1,4 +1,5 @@
-import { Item } from '../models/Item.js';
+import Item from '../models/Item.js';
+
 
 
 export const listItems = async (req, res) => {

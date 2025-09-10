@@ -1,23 +1,16 @@
-import { Router } from 'express';
-import { login, signup, logout, me } from '../controllers/authController.js';
+// backend/routes/user.routes.js
+import express from "express";
+import { signup, login, logout, me } from "../controllers/authController.js";
+import { protect } from "../middlewares/auth.js";
 
+const router = express.Router();
 
-const router = Router();
+// Public routes
+router.post("/signup", signup);
+router.post("/login", login);
 
-
-// POST /api/user/signup
-router.post('/signup', signup);
-
-
-// POST /api/user/login
-router.post('/login', login);
-
-// POST /api/user/logout
-router.post('/logout', logout);
-
-
-// GET /api/user/me
-router.get('/me', me);
-
+// Protected routes
+router.post("/logout", protect, logout);
+router.get("/me", protect, me);
 
 export default router;
