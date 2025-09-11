@@ -10,7 +10,7 @@ router.post("/signup", signup);
 router.post("/login", login);
 
 // Protected routes
-router.post("/logout", protect, logout);
+router.post("/logout", logout);
 router.get("/me", protect, me);
 
 export default router;
