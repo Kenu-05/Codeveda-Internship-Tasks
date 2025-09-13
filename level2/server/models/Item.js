@@ -29,6 +29,7 @@ const itemSchema = new mongoose.Schema(
       ref: "User",
       required: true, // must exist
     },
+    inStock: { type: Boolean, default: true }
   },
   {
     timestamps: true,

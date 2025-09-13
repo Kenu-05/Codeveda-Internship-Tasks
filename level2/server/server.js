@@ -7,16 +7,17 @@ import cors from "cors";
 
 import userRoutes from './routes/user.routes.js';
 import itemRoutes from "./routes/item.routes.js";
+import adminRoutes from "./routes/admin.routes.js";
 
 
 dotenv.config();
 const app = express();
+const PORT = process.env.PORT || 5000;
 
 
 
 
-
-app.use(express.json());
+app.use(express.json({strict:false }));
 app.use(cookieParser());
 app.use(
   cors({
@@ -32,10 +33,14 @@ mongoose
 
 app.use("/api/users", userRoutes);
 app.use("/api/items", itemRoutes);
+app.use("/api/admin", adminRoutes); 
+app.get("/ping", (req, res) => res.send("pong"));
+app.get("/api/admin/test-inline", (req, res) => res.json({ msg: "inline test works" }));
+
 
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
 
-const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
