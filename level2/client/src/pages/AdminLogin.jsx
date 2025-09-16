@@ -3,24 +3,24 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 
-export default function Login({ setUser }) {
+export default function AdminLogin({ setAdmin }) {
   const [form, setForm] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("http://localhost:5000/api/users/login", form);
+      const { data } = await axios.post("http://localhost:5000/api/admin/login", form,{withCredentials:true});
 
       if (data.success) {
-        setUser(data.user);
-        toast.success("Logged in successfully");
-        navigate("/items");
+        setAdmin(data.admin);
+        toast.success("Admin logged in successfully");
+        navigate("/admin/dashboard");
       } else {
-        toast.error(data.message || "Invalid user credentials");
+        toast.error(data.message || "Invalid admin credentials");
       }
     } catch (err) {
-      toast.error(err.response?.data?.message || "User login failed");
+      toast.error(err.response?.data?.message || "Admin login failed");
     }
   };
 
@@ -31,7 +31,7 @@ export default function Login({ setUser }) {
         onSubmit={handleSubmit}
         className="bg-white shadow-lg p-6 rounded w-80 space-y-4"
       >
-        <h2 className="text-2xl font-bold">User Login</h2>
+        <h2 className="text-2xl font-bold">Admin Login</h2>
 
         <input
           type="email"
@@ -49,8 +49,8 @@ export default function Login({ setUser }) {
           onChange={(e) => setForm({ ...form, password: e.target.value })}
         />
 
-        <button className="bg-green-600 text-white w-full py-2 rounded">
-          Login
+        <button className="bg-blue-600 text-white w-full py-2 rounded">
+          Admin Login
         </button>
       </form>
     </div>

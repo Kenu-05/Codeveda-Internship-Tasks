@@ -16,6 +16,14 @@ export const toggleItemStock = async (req, res) => {
     res.status(500).json({ success: false, message: err.message });
   }
 };
+export const listAllItems = async (req, res) => {
+  try {
+    const items = await Item.find(); // fetch all items
+    res.json({ success: true, items });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
 
 export const listAllUsers = async (req, res) => {
   try {
@@ -52,7 +60,7 @@ export const adminLogin = async (req, res) => {
       return res.json({
         success: true,
         message: "Admin logged in successfully",
-        user: { email, role: "admin" },
+        admin: { email, role: "admin" },
       });
     }
 

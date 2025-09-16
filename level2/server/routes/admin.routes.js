@@ -1,6 +1,6 @@
 import express from "express";
 import { adminAuth } from "../middlewares/adminAuth.js";
-import { toggleItemStock, listAllUsers,adminLogin,adminLogout } from "../controllers/adminController.js";
+import { toggleItemStock, listAllUsers,adminLogin,adminLogout,listAllItems } from "../controllers/adminController.js";
 import { protect } from "../middlewares/auth.js";
 
 const router = express.Router();
@@ -10,6 +10,7 @@ const router = express.Router();
 
 // Get all users
 router.get("/users", protect,adminAuth, listAllUsers);
+router.get("/items", protect,adminAuth, listAllItems);
 router.post("/login", adminLogin);
 router.put("/items/toggle/:id", protect,adminAuth, toggleItemStock);
 router.post("/logout", protect, adminAuth, adminLogout);

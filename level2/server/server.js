@@ -5,19 +5,16 @@ import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import cors from "cors";
 
-import userRoutes from './routes/user.routes.js';
+import userRoutes from "./routes/user.routes.js";
 import itemRoutes from "./routes/item.routes.js";
 import adminRoutes from "./routes/admin.routes.js";
-
 
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-
-
-
-app.use(express.json({strict:false }));
+// Middleware
+app.use(express.json({ strict: false }));
 app.use(cookieParser());
 app.use(
   cors({
@@ -26,21 +23,25 @@ app.use(
   })
 );
 
+// Simple test route
+app.get("/ping", (req, res) => res.send("pong"));
+app.get("/", (req, res) => res.send("API is running..."));
+
+// ✅ Connect DB, then mount routes + start server
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB Connected"))
-  .catch((err) => console.error("MongoDB Error:", err));
+  .then(() => {
+    console.log("✅ MongoDB Connected");
 
-app.use("/api/users", userRoutes);
-app.use("/api/items", itemRoutes);
-app.use("/api/admin", adminRoutes); 
-app.get("/ping", (req, res) => res.send("pong"));
-app.get("/api/admin/test-inline", (req, res) => res.json({ msg: "inline test works" }));
+    // Mount routes ONLY after DB connection
+    app.use("/api/users", userRoutes);
+    app.use("/api/items", itemRoutes);
+    app.use("/api/admin", adminRoutes);
 
-
-app.get("/", (req, res) => {
-  res.send("API is running...");
-});
-
-
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+    // Start server
+    app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+  })
+  .catch((err) => {
+    console.error("❌ MongoDB Connection Error:", err);
+    process.exit(1);
+  });
